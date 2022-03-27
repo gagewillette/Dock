@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'forgotpassword.dart';
 import 'home.dart';
 
 void main() async
@@ -32,6 +33,9 @@ class _BodyState extends State<Body> {
   bool hasTried = false;
 
   bool checkLogin(String user, String pass) {
+
+    //TODO: Create db check for username password
+
     if (pass == "" && user == "") {
       return true;
     } else {
@@ -48,7 +52,7 @@ class _BodyState extends State<Body> {
     if (states.any(interactiveStates.contains)) {
       return Colors.blue;
     }
-    return Colors.red;
+    return Colors.blue;
   }
 
   @override
@@ -97,7 +101,7 @@ class _BodyState extends State<Body> {
             ),
             TextButton(
               onPressed: () {
-                //forgot password screen
+                Navigator.push(context , MaterialPageRoute(builder: (context) => ForgotPassword()));
               },
               child: const Text(
                 'Forgot Password',
