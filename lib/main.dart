@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Dock());
+import 'home.dart';
+
+void main() async
+{
+  runApp(Dock());
+}
 
 class Dock extends StatelessWidget {
   @override
@@ -24,6 +29,7 @@ class _BodyState extends State<Body> {
   TextEditingController passCont = TextEditingController();
 
   bool isChecked = false;
+  bool hasTried = false;
 
   bool checkLogin(String user, String pass) {
     if (pass == "gage" && user == "gage") {
@@ -44,7 +50,6 @@ class _BodyState extends State<Body> {
     }
     return Colors.red;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -105,34 +110,57 @@ class _BodyState extends State<Body> {
                   child: const Text('Login'),
                   onPressed: () {
                     if (checkLogin(nameCont.text, passCont.text)) {
-                      print(true);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     } else {
-                      print(false);
+                      setState(() {
+                        hasTried = true;
+                      });
+                    }
+
+                    if (isChecked) {
+                      print("remember me!");
+                    } else {
+                      print("dont remember");
                     }
 
                     nameCont.clear();
                     passCont.clear();
                   },
                 )),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [Container(
+            Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: const Text("Remember my information: ")
-            ),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                child: Text(() {
+                  if (hasTried) {
+                    return "Your username or password is incorrect!";
+                  } else {
+                    return "";
+                  }
+                }(),
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold))),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: const Text("Remember my information: ")),
+              Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: Checkbox(
-                checkColor: Colors.white,
-                fillColor: MaterialStateProperty.resolveWith(getColor),
-                value: isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isChecked = value!;
-                  });
-                }
-              ),
-            )])
+                    checkColor: Colors.white,
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value!;
+                      });
+                    }),
+              )
+            ])
 
             /*
             Row(
