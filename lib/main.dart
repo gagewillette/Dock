@@ -1,56 +1,156 @@
-// ignore_for_file: prefer_const_constructors, unused_import
-// ignore: use_key_in_widget_constructors
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(Dock());
 
-// ignore: use_key_in_widget_constructors
-class Dock extends StatefulWidget {
-  @override
-  State<Dock> createState() => _DockState();
-}
-
-class _DockState extends State<Dock> {
-  // ignore: unused_field
-  int _selectedIndex = 0;
-
-  void _onTappedItem(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class Dock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Dock -  Boating, Simplfied",
+      title: "Dock - Boating, Simplified",
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Dock"),
-          backgroundColor: Colors.lightBlue,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home",
-                backgroundColor: Color.fromARGB(255, 7, 177, 255)),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.directions_boat),
-                label: "Schedule Drop",
-                backgroundColor: Color.fromARGB(255, 0, 145, 212)),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: "Account",
-                backgroundColor: Color.fromARGB(255, 0, 118, 173))
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.white,
-          onTap: _onTappedItem,
-          type: BottomNavigationBarType.shifting,
-        ),
+        body: Body(),
       ),
     );
+  }
+}
+
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  TextEditingController nameCont = TextEditingController();
+  TextEditingController passCont = TextEditingController();
+
+  bool isChecked = false;
+
+  bool checkLogin(String user, String pass) {
+    if (pass == "gage" && user == "gage") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.red;
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Dock - Boating, Simplified',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 30),
+                )),
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Sign in',
+                  style: TextStyle(fontSize: 20),
+                )),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                controller: nameCont,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'User Name',
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: TextField(
+                obscureText: true,
+                controller: passCont,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                //forgot password screen
+              },
+              child: const Text(
+                'Forgot Password',
+              ),
+            ),
+            Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
+                  onPressed: () {
+                    if (checkLogin(nameCont.text, passCont.text)) {
+                      print(true);
+                    } else {
+                      print(false);
+                    }
+
+                    nameCont.clear();
+                    passCont.clear();
+                  },
+                )),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                child: const Text("Remember my information: ")
+            ),
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                child: Checkbox(
+                checkColor: Colors.white,
+                fillColor: MaterialStateProperty.resolveWith(getColor),
+                value: isChecked,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isChecked = value!;
+                  });
+                }
+              ),
+            )])
+
+            /*
+            Row(
+              children: <Widget>[
+                const Text('Don\'t have an account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign up',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    //signup screen
+                  },
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),*/
+          ],
+        ));
   }
 }
