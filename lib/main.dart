@@ -32,7 +32,7 @@ class _BodyState extends State<Body> {
   bool hasTried = false;
 
   bool checkLogin(String user, String pass) {
-    if (pass == "gage" && user == "gage") {
+    if (pass == "" && user == "") {
       return true;
     } else {
       return false;
@@ -138,7 +138,7 @@ class _BodyState extends State<Body> {
                     return "";
                   }
                 }(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.red,
                         fontSize: 20,
                         fontWeight: FontWeight.bold))),
