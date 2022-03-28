@@ -26,11 +26,11 @@ class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home"),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-      ),
+        /*appBar: AppBar(
+          title: const Text("Home"),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+        ),*/
       body: Center(
         child: widgetOptions.elementAt(selectedIndex)
       ),

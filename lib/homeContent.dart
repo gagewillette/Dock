@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
-
-
 
 class homeContent extends StatefulWidget {
   const homeContent({Key? key}) : super(key: key);
@@ -22,15 +21,11 @@ class homeContent extends StatefulWidget {
   State<homeContent> createState() => _HomeContent();
 }
 
-
-
-
 class _HomeContent extends State<homeContent> {
-
   Weather w = homeContent.w;
 
-  void updateWeatherMetrics(double? fahrenheit, double? tempM , double? tempm , double? cloud)
-  {
+  void updateWeatherMetrics(
+      double? fahrenheit, double? tempM, double? tempm, double? cloud) {
     setState(() {
       degreesFahrenheit = fahrenheit;
       tempMax = tempM;
@@ -45,34 +40,45 @@ class _HomeContent extends State<homeContent> {
   double? clouds = 0;
 
   Widget build(BuildContext context) {
-    updateWeatherMetrics(w!.temperature!.fahrenheit, w!.tempMax!.fahrenheit, w!.tempMin!.fahrenheit , w!.cloudiness);
+    updateWeatherMetrics(w!.temperature!.fahrenheit, w!.tempMax!.fahrenheit,
+        w!.tempMin!.fahrenheit, w!.cloudiness);
 
     return ListView(
       children: [
         Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.fromLTRB(0, 100, 0, 30),
-            child: Text(
-              degreesFahrenheit!.ceil().toString() + "°",
-              style: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 50),
+            padding: EdgeInsets.fromLTRB(0, 40, 0, 30),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.thermostat_rounded , color: Colors.blue, size: 50,),
+                Text(
+                  degreesFahrenheit!.ceil().toString() + "°",
+                  style: const TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 40),
+                )
+              ],
             )),
         Container(
             alignment: Alignment.topCenter,
-            child: Text("Min Temp: " + tempMin!.ceil().toString() + "° / Max Temp: " + tempMax!.ceil().toString() + "°",
+            child: Text(
+                "Min Temp: " +
+                    tempMin!.ceil().toString() +
+                    "° / Max Temp: " +
+                    tempMax!.ceil().toString() +
+                    "°",
                 style: const TextStyle(
                     color: Colors.blueAccent,
                     fontWeight: FontWeight.w300,
-                    fontSize: 30))),
+                    fontSize: 25))),
         Container(
             alignment: Alignment.topCenter,
-            child: Text(clouds.toString() + "% Cloudiness",
+            child: Text(clouds!.toInt().toString() + "% Cloudiness",
                 style: const TextStyle(
                     color: Colors.blueAccent,
                     fontWeight: FontWeight.w300,
-                    fontSize: 30))),
+                    fontSize: 25))),
       ],
     );
   }
