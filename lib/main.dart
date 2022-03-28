@@ -1,10 +1,14 @@
+import 'package:dock/homeContent.dart';
 import 'package:flutter/material.dart';
 
 import 'forgotpassword.dart';
 import 'home.dart';
+import 'package:dock/homeContent.dart';
 
 void main() async
 {
+  homeContent.getWeather();
+
   runApp(Dock());
 }
 
