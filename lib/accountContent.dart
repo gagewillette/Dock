@@ -35,6 +35,6 @@ class _accountContent extends State<accountContent> {
                 child: Text(entries[index] , style: const TextStyle(color: Colors.white))));
       },
     );
-    return lv;
+    return Container(padding: const EdgeInsets.fromLTRB(0, 30, 0, 0), child: lv);
   }
 }
