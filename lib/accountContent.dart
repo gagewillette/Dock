@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dock/popup.dart';
 
 class accountContent extends StatefulWidget {
   @override
@@ -21,8 +22,8 @@ class _accountContent extends State<accountContent> {
 
   @override
   Widget build(BuildContext context) {
-    var lv = ListView.builder(
-      padding: const EdgeInsets.all(8),
+    var lv = ListView.separated(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
@@ -30,10 +31,10 @@ class _accountContent extends State<accountContent> {
             height: 100,
             child: TextButton(
                 onPressed: () {
-                  print(index.toString() + " was pressed");
+                  PopUp();
                 },
-                child: Text(entries[index] , style: const TextStyle(color: Colors.white))));
-      },
+                child: Text(entries[index] , style: const TextStyle(color: Colors.white , fontFamily: 'Open-Sans', fontWeight: FontWeight.w400))));
+      }, separatorBuilder: (BuildContext context, int index) => const Divider(indent: 3)  ,
     );
     return Container(padding: const EdgeInsets.fromLTRB(0, 30, 0, 0), child: lv);
   }
