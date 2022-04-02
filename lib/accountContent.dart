@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dock/popup.dart';
 
 class accountContent extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _accountContent extends State<accountContent> {
             height: 100,
             child: TextButton(
                 onPressed: () {
-                  print(index.toString() + " was pressed");
+                  PopUp();
                 },
                 child: Text(entries[index] , style: const TextStyle(color: Colors.white , fontFamily: 'Open-Sans', fontWeight: FontWeight.w400))));
       }, separatorBuilder: (BuildContext context, int index) => const Divider(indent: 3)  ,
