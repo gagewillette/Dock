@@ -125,13 +125,6 @@ class _BodyState extends State<Body> {
                         hasTried = true;
                       });
                     }
-
-                    if (isChecked) {
-                      print("remember me!");
-                    } else {
-                      print("dont remember");
-                    }
-
                     nameCont.clear();
                     passCont.clear();
                   },
