@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 
+
 class homeContent extends StatefulWidget {
   const homeContent({Key? key}) : super(key: key);
 
@@ -47,16 +48,21 @@ class _HomeContent extends State<homeContent> {
       children: [
         Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.fromLTRB(0, 40, 0, 30),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            padding: const EdgeInsets.fromLTRB(0, 40, 0, 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.thermostat_rounded , color: Colors.blue, size: 50,),
+                const Icon(
+                  Icons.thermostat_rounded,
+                  color: Colors.blue,
+                  size: 50,
+                ),
                 Text(
                   degreesFahrenheit!.ceil().toString() + "°",
                   style: const TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 40),
+                    color: Colors.blue,
+                    fontSize: 40,
+                  ),
                 )
               ],
             )),
