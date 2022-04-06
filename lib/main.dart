@@ -1,5 +1,6 @@
 import 'package:dock/homeContent.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'forgotpassword.dart';
 import 'home.dart';
@@ -17,6 +18,7 @@ class Dock extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Dock - Boating, Simplified",
+      theme: ThemeData(primaryColor: Colors.lightBlue , fontFamily: 'Dosis'),
       home: Scaffold(
         body: Body(),
       ),
@@ -72,7 +74,7 @@ class _BodyState extends State<Body> {
                   'Dock - Boating, Simplified',
                   style: TextStyle(
                       color: Colors.blue,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w800,
                       fontSize: 30),
                 )),
             Container(
@@ -109,11 +111,11 @@ class _BodyState extends State<Body> {
               },
               child: const Text(
                 'Forgot Password',
-              ),
+              style: TextStyle(fontWeight: FontWeight.w500 , fontSize: 20),),
             ),
             Container(
                 height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () {

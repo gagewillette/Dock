@@ -9,8 +9,9 @@ class myDockContent extends StatefulWidget
 class _myDockContent extends State<myDockContent>
 {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("My Dock")));
-}
+  Widget build(BuildContext context)
+  {
+    return Scaffold();
+  }
 
 }

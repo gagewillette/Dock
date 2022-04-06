@@ -21,8 +21,9 @@ class ForgotPassword extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
             child: const Text("Contact the marina that opened your account. They will assist you in resetting your login information." ,
             style: TextStyle (
+              fontFamily: 'Dosis',
               fontSize: 19,
-              fontWeight: FontWeight.w300
+              fontWeight: FontWeight.w600
             ))
         )
       ],
