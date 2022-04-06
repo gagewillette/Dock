@@ -13,20 +13,8 @@ class _PopUp extends State<PopUp> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(name),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[Text("Hello")],
-      ),
-      actions: <Widget>[
-        FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            textColor: Theme.of(context).primaryColor,
-            child: const Text("Close"))
-      ],
+
     );
+
   }
 }

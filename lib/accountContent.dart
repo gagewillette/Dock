@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dock/popup.dart';
 
 class accountContent extends StatefulWidget {
+  const accountContent({Key? key}) : super(key: key);
+
   @override
   State<accountContent> createState() => _accountContent();
 }
@@ -31,10 +33,27 @@ class _accountContent extends State<accountContent> {
             height: 100,
             child: TextButton(
                 onPressed: () {
-                  PopUp();
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                          title: Text(entries[index]),
+                          content: const Text("Okay buddy"),
+                        actions: [
+                          TextButton(
+                            child: const Text('Close'),
+                            onPressed: () => Navigator.pop(context),
+                          )
+                        ],
+                      ));
                 },
-                child: Text(entries[index] , style: const TextStyle(color: Colors.white , fontFamily: 'Open-Sans', fontWeight: FontWeight.w400))));
-      }, separatorBuilder: (BuildContext context, int index) => const Divider(indent: 3)  ,
+                child: Text(entries[index],
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Open-Sans',
+                        fontWeight: FontWeight.w400))));
+      },
+      separatorBuilder: (BuildContext context, int index) =>
+          const Divider(indent: 3),
     );
     return lv;
   }
