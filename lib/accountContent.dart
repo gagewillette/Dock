@@ -55,6 +55,6 @@ class _accountContent extends State<accountContent> {
       separatorBuilder: (BuildContext context, int index) =>
           const Divider(indent: 3),
     );
-    return lv;
+    return Container(padding: const EdgeInsets.fromLTRB(0, 30, 0, 0), child: lv);
   }
 }
